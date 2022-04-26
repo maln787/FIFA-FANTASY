@@ -1,0 +1,217 @@
+{% extends 'layout.html' %}
+
+{% block title %}My Team{% endblock %}
+
+{% block content %}
+<head>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.css"/> -->
+  <link href="{{ url_for('static', filename='player.css') }}" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+
+    ul {
+      list-style-type: none;
+    }
+
+    li {
+      display: inline-block;
+    }
+
+    input[type="checkbox"][id^="cb"] {
+      display: none;
+    }
+
+    label {
+      border: 1px solid #fff;
+      padding: 5px;
+      display: block;
+      position: relative;
+      margin: 10px;
+      cursor: pointer;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    label::before {
+      background-color: white;
+      color: white;
+      content: " ";
+      display: block;
+      /*border-radius: 50%;*/
+      /*border: 1px solid grey;*/
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      width: 25px;
+      height: 25px;
+      text-align: center;
+      line-height: 28px;
+      transition-duration: 0.4s;
+      transform: scale(0);
+    }
+
+    label img {
+      height: 200px;
+      width: 180px;
+      transition-duration: 0.2s;
+      transform-origin: 50% 50%;
+    }
+
+    :checked+label {
+      border-color: #ddd;
+    }
+
+    :checked+label::before {
+      content: "✓";
+      background-color: mediumblue;
+      transform: scale(1);
+    }
+
+    :checked+label img {
+      transform: scale(0.9);
+      box-shadow: 0 0 5px #333;
+      z-index: -1;
+    }
+
+    .transbox {
+              margin: 30px;
+              background-color: #ffffff;
+              /* border: 1px solid black; */
+              opacity: 0.6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    form.example input[type=text] {
+      padding: 10px;
+      font-size: 17px;
+      border: 1px solid grey;
+      float: left;
+      width: 80%;
+      background: #f1f1f1;
+    }
+
+    form.example button {
+      float: left;
+      width: 20%;
+      padding: 10px;
+      background: #2196F3;
+      color: white;
+      font-size: 17px;
+      border: 1px solid grey;
+      border-left: none;
+      cursor: pointer;
+    }
+
+    form.example button:hover {
+      background: #0b7dda;
+    }
+
+    form.example::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+  </style>
+</head>
+<body> 
+
+<h2 style="color: beige;"> {{firstname.title()}}'s TEAM: {{squad_name}}</h2> <br> <br>
+{% if msg|length > 1 %}
+<div class="msg" style="color: rgb(50, 72, 162);">{{ msg }}</div>
+{% endif %}
+<h5 style="color: beige;">Search Player</h5>
+<br>
+  <form action="{{ url_for('createTeam') }}" method="post">
+    <div class="form-row">
+        <div class="col-7">
+          <input type="text" class="form-control" placeholder="Player Search.." name="search">
+        </div>
+
+        <div class="col">
+          <select id="inputState" class="form-control" name= "version">
+            <option selected>Choose Version</option>
+            <option value="20">2020</option>
+            <option value="21">2021</option>
+            <option value="22">2022</option>      
+          </select>
+        </div>
+
+        <div class="col">
+          <button type="submit">Search</button>
+        </div>
+    </div>
+  </form>
+  
+
+  {% if flag == True %}
+    <div style="background-image: url('../static/img/abs2.jpg'); background-size: cover;">
+          <b style="color: azure;">{{ player_['Name'] }}</b>  
+
+          <!-- Add Player -->
+          <form action="{{ url_for('createTeam') }}" method="post">
+            <button class = "btn-primary " style="float: right;" name='add_player' value="{{player_['player_id']}}"> Add to your Team</button>
+          </form>
+         
+    </div>
+
+  <div class="container" style="background-image: url('../static/img/info.jpg'); 
+                                  background-repeat: no-repeat;
+                                  background-size: cover; ">
+  <!-- Player Description -->
+      <h4>Player Description</h4> <br>
+      <div class="label">
+        <a>Nationality:  <strong>{{ player_['Nation'] }}</strong></a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a>Club:  <strong>{{ player_['clubname'] }}</strong></a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a>League:  <strong>{{ player_['leaguename'] }}</strong></a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      </div>
+
+      <div class="label">
+        <a>Overall:  <strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ player_['Overall'] }}</strong></a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a>Age&nbsp&nbsp&nbsp: <strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ player_['Age'] }}</strong></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a>Positions:  <strong> {% for i in player_position %}
+                                {{ i }} 
+                                {% endfor %}
+                      </strong></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      </div>
+    <!-- Height and Weight -->
+      <div class="label">
+        <a>Height&nbsp&nbsp&nbsp: <strong>{{ player_['Height'] }}&nbsp&nbsp-&nbsp&nbsp m</strong></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a>Weight&nbsp&nbsp&nbsp: <strong>{{ player_['Weight'] }}&nbsp&nbsp-&nbsp&nbsp kg</strong></a>
+      </div>
+
+      <div class="label">
+        <a>Value&nbsp&nbsp&nbsp: <strong>{{ player_['Value']}} </strong>euro</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a>Wage&nbsp&nbsp&nbsp: <strong>{{ player_['Wage'] }}</strong></a>
+      </div><br>
+
+      <!-- Player Atrributes -->
+      <h5>Playing Atrributes:</h5><br>
+
+      <div class="label">
+        <a>Pace&nbsp&nbsp&nbsp: <strong>&nbsp&nbsp&nbsp&nbsp{{ player_['Pace'] }}</strong></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a>Passing&nbsp&nbsp&nbsp: <strong>&nbsp&nbsp{{ player_['Pass'] }}</strong></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a>Defending&nbsp&nbsp&nbsp: <strong>{{ player_['Def'] }}</strong></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a>Dribbling&nbsp&nbsp&nbsp: <strong>{{ player_['Drib'] }}</strong></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a>Shooting&nbsp&nbsp&nbsp: <strong>{{ player_['Shoot'] }}</strong></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      </div>
+  </div>
+
+{% else %}
+
+{% endif %}
+
+
+{% endblock %}
+</body>
+
+
+

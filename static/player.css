@@ -1,0 +1,171 @@
+body {
+    
+    background-size: cover;
+}
+
+/* CONTAINERS */
+
+.chart-container {
+    margin-top: 2.5%;
+    float: left;
+    width: 45%;
+    margin-left: 5%;
+    height: 60vh;
+}
+
+.stats-container {
+    margin-top: 1%;
+    float: left;
+    width: 35%;
+    border-left: solid lightgrey;
+    border-width: 0.1vw;
+}
+
+.stats-container > * {
+    padding-left: 25%;
+}
+/* 
+h1 > * {
+    vertical-align: middle;
+    margin-bottom: 0.75%;
+} */
+
+/* TITLE */
+
+/* h1 {
+    font-weight: 100;
+    text-align: center;
+    margin-top: 3%;
+    color: #757575;
+    font-size: 6vh;
+    margin-bottom: 1.5%;
+} */
+
+.logo {
+    margin-left: -2vw;
+    margin-top: 7vh;
+}
+
+/* CHART */
+
+#myChart {
+    width:100%;
+    height:100%;
+}
+
+/* STATS */
+
+.overall, .potential {
+    width: 30%;
+    height: 10%;
+    border-radius: 1vw;
+    padding: 3% 0%;
+    text-align: center;
+    margin: 3% 25%;
+    float: left;
+    color: white;
+    font-size: 2.5vh;
+}
+
+.other {
+    display: inline-block;
+    color: #757575;
+    width: 100%;
+    margin-top: 2%;
+    font-size: 2.5vh;
+}
+
+.potential {
+    margin: 3% -20% !important;
+}
+
+.label {
+    margin-bottom: 2vh;
+}
+
+.label > * {
+    vertical-align: middle;
+}
+
+/* BUTTONS */
+/* 
+.btn {
+    border-radius: 15px;
+    color: #757575;
+    padding: 3px 3px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 3vh;
+    position: absolute;
+    font-size: 2.5vh; */
+/* }
+
+.home {
+    margin-left: 7vw;
+}
+
+.help {
+    margin-left: 14vw;
+}
+
+.fa {
+    vertical-align: top;
+    -webkit-text-stroke: 1px #F5F5F5;
+}
+
+.btn:hover > .fa {
+    -webkit-text-stroke: 0.01px #757575;
+} */
+
+/* QTIPS */
+
+.qtip-bootstrap {
+    background: #F5F5F5;
+    text-align: justify;
+}
+
+.qtip-content {
+    text-align: justify;
+    font-size: 1vw;
+}
+
+/* RESPONSIVE DESIGN */
+@media all and (max-width:900px) {
+    body {
+        overflow-y: auto
+    }
+    /* .btn {
+        margin-top: -10%;
+        font-size: 5vw;
+    } */
+    .title {
+        margin-top: 15vw;
+    }
+    .home {
+        margin-left: 20vw;
+    }
+    .help {
+        margin-left: 57vw;
+    }
+    .chart-container {
+        margin-top: 1%;
+        float: left;
+        width: 90%;
+        margin-left: 5%;
+        height: 60vh;
+    }
+    .stats-container {
+        margin-top: 1%;
+        float: none;
+        width: 90%;
+        margin-left: 5%;
+        border-width: 0px;
+    }
+    .stats-container > * {
+        padding-left: 0%;
+        text-align: center;
+    }
+    .overall, .potential {
+        margin: 8% -14% 3% 18% !important;
+    }
+}

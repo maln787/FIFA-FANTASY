@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% block title %}My Team{% endblock %}
+
+{% block content %}
+<head>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
+</head>
+<h2 style="color: beige;"> {{firstname.title()}}'s Team: {{squad_name}} 
+    <form action="{{ url_for('update') }}" method="post">
+        <div align="right">
+            <input type="search" name = "squad" placeholder="Enter new squad name.." aria-label="Search" aria-describedby="search-addon" />
+            <input type="submit" value="Update Squad Name" class="btn btn-primary">  
+        </div>
+    </form>
+</h2>
+
+<form action="{{ url_for('delete') }}" method="post">
+    <table class="table">
+    <tr class="table__header"> 
+        {% for header in headings[1:] %} 
+        <th class="table__Cell">{{header}}</th> 
+        {% endfor %} 
+    </tr> 
+    {% for row in data %} 
+    <tr class="table__row" id = {{row[0]}} >  
+        {% for cell in row[1:] %} 
+        <td class="table__cell">{{ cell }}</td> 
+        {% endfor %}
+        <td class="table__cell"> {{row[0][-4:]}} </td>
+        <td class="table__cell" ><input type="checkbox" name="mycheckbox" value="{{row[0]}}" /></td>
+    </tr>
+    {% endfor %}
+    </table>
+    <div align="center">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+         {% for message in messages %}
+         <div class="alert alert-danger" role="alert">{{ message }}</div>
+         {% endfor %}
+         {% endif %}
+        {% endwith %}
+       <input type="submit" value="Delete All Selected" class="btn btn-primary">  
+      </div>
+</form>
+<!-- <br><br><br>
+<form action="{{ url_for('myteam') }}" method="post">
+<div align="right">
+    <input type="submit" value="Update Squad Name" class="btn btn-primary">  
+</div>
+</form> -->
+<!-- 
+
+{% for i in data %}
+{{ i }} <br>
+{% endfor %}
+
+{{data}}
+
+{% endblock %} -->

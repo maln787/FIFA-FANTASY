@@ -1,0 +1,9 @@
+USER_LOGIN_SUCCESS = 'Logged in successfully!'
+USER_REGISTER_SUCCESS = 'Registered successfully!'
+USER_INCORRECT_CREDS = 'Incorrect username/password'
+USER_ACC_EXISTS = 'An account with these credentials already exists!'
+USER_INVALID_EMAIL = 'Email address is not in the correct format!'
+USER_INVALID_FORMAT = 'The username format is incorrect!'
+USER_FORM_INCOMPLETE = 'A required field is missing!'
+USER_PLAYER_INCORRECT = 'Player not found'
+SQUAD_NAME_DUP = "Already have a Squad Name, move to Myteam and Update the Name"
