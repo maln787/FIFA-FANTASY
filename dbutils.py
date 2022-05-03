@@ -21,6 +21,11 @@ DB_CONN = {
 #     'port': int(os.getenv('DB_PORT')),
 #     'password': os.getenv('DB_PASS'),
 #     'db': os.getenv('DB_NAME'),
+# DB_CONN = {
+#         'host':'localhost',
+#         'user':'root', 
+#         'password' : "root@123",
+#         'db':'FIFA'
 # }
 
 
