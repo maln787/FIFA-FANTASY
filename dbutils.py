@@ -3,11 +3,18 @@ from dotenv import load_dotenv
 
 load_dotenv()
 DB_CONN = {
-        'host':'localhost',
-        'user':'root', 
-        'password' : "root@123",
-        'db':'FIFA'
+    'host': os.getenv('DB_HOST'),
+    'user': os.getenv('DB_USER'),
+    'port': int(os.getenv('DB_PORT')),
+    'password': os.getenv('DB_PASS'),
+    'db': os.getenv('DB_NAME'),
 }
+# DB_CONN = {
+#         'host':'localhost',
+#         'user':'root', 
+#         'password' : "root@123",
+#         'db':'FIFA'
+# }
 
 
 class Query:
