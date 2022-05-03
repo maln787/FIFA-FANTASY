@@ -10,10 +10,10 @@ load_dotenv()
 # }
 
 DB_CONN = {
-        'host':'us-cdbr-east-05.cleardb.net',
-        'user':'b46aae23bf6f7b', 
-        'password' : "bf09b4ab",
-        'db':'heroku_e388487f160080c'
+        'host':'Enter Host Name',
+        'user':'Enter User ', 
+        'password' : "Enter Pass",
+        'db':'Enter Db Name'
 }
 # DB_CONN = {
 #     'host': os.getenv('DB_HOST'),
