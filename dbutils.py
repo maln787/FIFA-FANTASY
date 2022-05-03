@@ -2,32 +2,12 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-# DB_CONN = {
-#         'host':'localhost',
-#         'user':'root', 
-#         'password' : "root@123",
-#         'db':'FIFA'
-# }
-
 DB_CONN = {
         'host':'Enter Host Name',
         'user':'Enter User ', 
         'password' : "Enter Pass",
         'db':'Enter Db Name'
 }
-# DB_CONN = {
-#     'host': os.getenv('DB_HOST'),
-#     'user': os.getenv('DB_USER'),
-#     'port': int(os.getenv('DB_PORT')),
-#     'password': os.getenv('DB_PASS'),
-#     'db': os.getenv('DB_NAME'),
-# DB_CONN = {
-#         'host':'localhost',
-#         'user':'root', 
-#         'password' : "root@123",
-#         'db':'FIFA'
-# }
-
 
 class Query:
     USER_REGISTER = """INSERT INTO `user` 
@@ -70,18 +50,6 @@ class Query:
                         JOIN club c USING(player_id)
                 
                 where player_id = %s""".strip()
-
-#     TEAMSHOW = """ WITH cte as (SELECT * from `main_df` 
-#                    WHERE player_id = %s)
-
-#                    SELECT player_id, 
-#                           player_name, 
-#                           club_name, 
-#                           league_name, 
-#                           nationality_name, 
-#                           overall 
-#                    FROM cte 
-#                         JOIN club USING(player_id)""".strip()
     
     SQUADNAME = """INSERT INTO `squad`
                    (user_id, squad_name)
