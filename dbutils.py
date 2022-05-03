@@ -2,12 +2,26 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
+# DB_CONN = {
+#         'host':'localhost',
+#         'user':'root', 
+#         'password' : "root@123",
+#         'db':'FIFA'
+# }
+
 DB_CONN = {
-        'host':'localhost',
-        'user':'root', 
-        'password' : "root@123",
-        'db':'FIFA'
+        'host':'us-cdbr-east-05.cleardb.net',
+        'user':'b46aae23bf6f7b', 
+        'password' : "bf09b4ab",
+        'db':'heroku_e388487f160080c'
 }
+# DB_CONN = {
+#     'host': os.getenv('DB_HOST'),
+#     'user': os.getenv('DB_USER'),
+#     'port': int(os.getenv('DB_PORT')),
+#     'password': os.getenv('DB_PASS'),
+#     'db': os.getenv('DB_NAME'),
+# }
 
 
 class Query:
@@ -41,17 +55,28 @@ class Query:
 
     FETCHTEAM = """ SELECT player_id FROM `user_team` WHERE user_id = %s""".strip()
 
-    TEAMSHOW = """ WITH cte as (SELECT * from `main_df` 
-                   WHERE player_id = %s)
+    TEAMSHOW = """SELECT m.player_id, 
+                        m.player_name, 
+                        c.club_name, 
+                        c.league_name, 
+                        m.nationality_name, 
+                        m.overall 
+                FROM main_df m
+                        JOIN club c USING(player_id)
+                
+                where player_id = %s""".strip()
 
-                   SELECT player_id, 
-                          player_name, 
-                          club_name, 
-                          league_name, 
-                          nationality_name, 
-                          overall 
-                   FROM cte 
-                        JOIN club USING(player_id)""".strip()
+#     TEAMSHOW = """ WITH cte as (SELECT * from `main_df` 
+#                    WHERE player_id = %s)
+
+#                    SELECT player_id, 
+#                           player_name, 
+#                           club_name, 
+#                           league_name, 
+#                           nationality_name, 
+#                           overall 
+#                    FROM cte 
+#                         JOIN club USING(player_id)""".strip()
     
     SQUADNAME = """INSERT INTO `squad`
                    (user_id, squad_name)
