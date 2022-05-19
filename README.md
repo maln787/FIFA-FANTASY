@@ -1,5 +1,7 @@
 # FIFA FANTASY
 
+Web Application Link: https://fifaadt.herokuapp.com/
+
 Project Summary 
 
 Using a dataset from Kaggle containing records for each player and their attributes in the Fifa Video Game during the 2019-2022 Version, our database application will provide an interactive attribute summary aimed at FIFA enthusiasts who are interested and can use data to learn about historical comparisons of players and to create their own competitive team. The data also allows multiple comparisons for the same players across the last 3 versions of the videogame.
