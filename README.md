@@ -19,7 +19,6 @@ Objectives:
 Dataset: Link: https://www.kaggle.com/stefanoleone992/fifa-22-complete-player-dataset?select=players_22.csv
 
 The Dataset has been taken from Kaggle, where it was uploaded by Stefano Leone and scraped from the publicly available website sofifa.com. We have extracted the football players' data in the Fifa 2020- 2022 game. The dataset contains a total data point of approximately 60,000.
-Link: https://www.kaggle.com/stefanoleone992/fifa-22-complete-player-dataset?select=players_22.csv
 In total, the dataset includes 110 attributes of a player. Some attributes are mentioned below: 
 Every player available in FIFA 20, 21 and 22
 URL of the scraped players
