@@ -93,7 +93,7 @@ def home():
     return redirect(url_for('login'))
 
 
-# Team Creation
+#Team Creation
 @app.route('/createTeam', methods=['GET', 'POST'])
 def createTeam():
     if 'loggedin' in session:
@@ -159,7 +159,7 @@ def createTeam():
         return render_template("createTeam.html", username=session['username'], firstname = session['firstname'], msg = msg, flag = flag)
     return redirect(url_for('login'))
 
-# Show Team
+#Show Team
 @app.route('/myteam', methods=['GET', 'POST'])
 def myteam():
     heading = []
@@ -193,7 +193,7 @@ def myteam():
         return render_template("myteam.html", squad_name = squad_name[1], headings = ("Id","Player","Club","League","Nationality", "Overall rating","Version", "Check"), data = final_list, username=session['username'], firstname = session['firstname'])
     return redirect(url_for('login'))
 
-#Sekect Squad Name
+#Select Squad Name
 @app.route('/squad', methods = ['GET', 'POST'])
 def squad():
     if 'loggedin' in session and request.method == 'POST':
@@ -212,7 +212,7 @@ def squad():
                     conn.commit()
     return redirect(url_for('createTeam'))
 
-# Update Squad Name
+#Update Squad Name
 @app.route('/update', methods = ['GET', 'POST'])
 def update():
     if 'loggedin' in session and request.method == 'POST':
@@ -223,7 +223,7 @@ def update():
                 conn.commit()
     return redirect(url_for('myteam'))
 
-#delete player
+#Delete player
 @app.route('/delete', methods=['GET', 'POST'])
 def delete():   
     if 'loggedin' in session and request.method == 'POST':
